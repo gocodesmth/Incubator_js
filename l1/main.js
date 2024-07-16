@@ -28,12 +28,12 @@ const users = [
         isStudent: true,
     },
     {
-        id: 1,
+        id: 3,
         name: 'Ann',
         isStudent: true,
     },
     {
-        id: 1,
+        id: 4,
         name: 'Donald',
         isStudent: true,
     }
@@ -44,6 +44,49 @@ const newUser = {
     name: 'Farid',
     isStudent: true,
 }
-console.log(newUser);
 
-// CRUD -> Create-Read-Update-Delete
+// CRUD Operations -> Create-Read-Update-Delete
+
+// Create
+const copyUsers = users.concat(newUser)
+console.log(copyUsers);
+// Read
+// Update
+const whatNeedToDoWithEachUser = (u) => u.id === 2 ? { ...u, isStudent: false } : u // ... -> spread
+const updatedUsers = copyUsers.map(whatNeedToDoWithEachUser) // map -> иммутабельная операция
+//Delete
+const deletedUsers = updatedUsers.filter(u => u.id !== 4) // filter -> иммутабельная операция
+console.log(deletedUsers);
+console.log(deletedUsers === updatedUsers);
+console.log(copyUsers === updatedUsers);
+
+const superUser = { // данные глубокой вложенности - сложно изменять -> использовать реже
+    "id": 1,
+    "name": "Leanne Graham",
+    "email": "Sincere@april.biz",
+    "address": {
+        "street": "Kulas Light",
+        "suite": "Apt. 556",
+        "city": "Gwenborough",
+        "zipcode": "92998-3874",
+        "geo": {
+            "lat": "-37.3159",
+            "lng": "81.1496"
+        }
+    },
+    "phonr": "1-770-736-8031 x56442",
+    "website": "hildergard.org",
+    "company": {
+        "name": "Romanguera-Crona",
+        "catchPhrase": "Multi-layered client-server neural-net,",
+        "bs": "harness real-time e-markets"
+    }
+}
+
+
+const superUserCopy = { ...superUser, company: { ...superUser.company, catchPhrase: "harness" } }
+
+
+const superUserCopy2 = { ...superUser, address: { ...superUser.address, geo: { ...superUser.address.geo, lng: "85.00" } } }
+
+const superUserCopy3 = { ...superUser, email: "asdfgh@april.com" }
