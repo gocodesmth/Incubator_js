@@ -2,19 +2,19 @@
 // - составной (комбинированный)
 // - ссылочный тип данных
 
-const user = { name: "Bob" }
-const user2 = user
-user2.name = "Alex"
-console.log(user.name)
+// const user = { name: "Bob" }
+// const user2 = user
+// user2.name = "Alex"
+// console.log(user.name)
 
-const arr = [1, 2, 3, 4]
-arr.push(5) // мутирует массив
-// arr.pop() // remove last elem
-// arr.shift() // remove first elem
-// arr.unshift(5) //insert elem at the start
-// семантичный - логическое наименование итемов
-const newarr = arr.concat(6); // не мутирует
-console.log(arr);
+// const arr = [1, 2, 3, 4]
+// arr.push(5) // мутирует массив
+// // arr.pop() // remove last elem
+// // arr.shift() // remove first elem
+// // arr.unshift(5) //insert elem at the start
+// // семантичный - логическое наименование итемов
+// const newarr = arr.concat(6); // копирует массив (добавляет 6 в конце массива), не мутирует исходный массив
+// console.log(arr);
 
 const users = [
     {
@@ -45,20 +45,21 @@ const newUser = {
     isStudent: true,
 }
 
-// CRUD Operations -> Create-Read-Update-Delete
+// // CRUD Operations -> Create-Read-Update-Delete
 
-// Create
-const copyUsers = users.concat(newUser)
-console.log(copyUsers);
-// Read
-// Update
-const whatNeedToDoWithEachUser = (u) => u.id === 2 ? { ...u, isStudent: false } : u // ... -> spread
-const updatedUsers = copyUsers.map(whatNeedToDoWithEachUser) // map -> иммутабельная операция
-//Delete
-const deletedUsers = updatedUsers.filter(u => u.id !== 4) // filter -> иммутабельная операция
-console.log(deletedUsers);
-console.log(deletedUsers === updatedUsers);
-console.log(copyUsers === updatedUsers);
+// // Create
+// const copyUsers = users.concat(newUser)
+// console.log(copyUsers);
+// // Read
+// // Update
+
+// const changeUserStatus = (u) => u.id === 2 ? { ...u, isStudent: false } : u // ... -> spread
+// const updatedUsers = copyUsers.map(changeUserStatus) // map -> иммутабельная операция копирования объекта   
+// // //Delete
+// const deletedUsers = updatedUsers.filter(u => u.id !== 4) // filter -> иммутабельная операция удаления
+// console.log(deletedUsers);
+// console.log(deletedUsers === updatedUsers);
+// console.log(copyUsers === updatedUsers);
 
 const superUser = { // данные глубокой вложенности - сложно изменять -> использовать реже
     "id": 1,
@@ -74,7 +75,7 @@ const superUser = { // данные глубокой вложенности - с
             "lng": "81.1496"
         }
     },
-    "phonr": "1-770-736-8031 x56442",
+    "phone": "1-770-736-8031 x56442",
     "website": "hildergard.org",
     "company": {
         "name": "Romanguera-Crona",
@@ -85,7 +86,6 @@ const superUser = { // данные глубокой вложенности - с
 
 
 const superUserCopy = { ...superUser, company: { ...superUser.company, catchPhrase: "harness" } }
-
 
 const superUserCopy2 = { ...superUser, address: { ...superUser.address, geo: { ...superUser.address.geo, lng: "85.00" } } }
 
